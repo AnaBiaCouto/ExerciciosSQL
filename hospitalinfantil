@@ -1,0 +1,60 @@
+CREATE DATABASE hositalinfantil;
+ 
+--criando primeira tabela da crianca
+CREATE TABLE crianca(
+idcrianca INT PRIMARY KEY,    
+nome VARCHAR (100) NOT NULL,
+peso DECIMAL(5,2),
+altura FLOAT,
+datanasc DATE NOT NULL
+);
+ 
+--criando tabela da mae
+CREATE TABLE mae(
+idmae INT PRIMARY KEY,
+datanasc DATE NOT NULL,
+nome VARCHAR(100) NOT NULL,
+rua VARCHAR (100) NOT NULL,
+numero INT (6) NOT NULL,
+complemento VARCHAR (100),
+cep VARCHAR(8) NOT NULL,
+telefone VARCHAR (15) NOT NULL
+);
+ 
+--criando tabela do medico
+CREATE TABLE medico(
+id INT PRIMARY KEY,
+nome VARCHAR (100) NOT NULL,
+especialidade VARCHAR(50) NOT NULL,
+crm INT (6) NOT NULL
+);
+ 
+--criando a tabela de nascimento
+CREATE TABLE nascimento(
+id  INT PRIMARY KEY,
+medico VARCHAR(100) NOT NULL,
+idcrianca INT,  
+idmae INT
+);
+ 
+--inserindo valores na de medicos
+INSERT INTO medico (id, nome, especialidade, crm)
+VALUES ("11245", "Juliana Alves Albuquerque", "Obstretícia", "123584"),
+ ("11246", "Pedro da Silva Santos", "Nutrologia Pediátrica", "658985"),
+ ("11546", "Vinicius Lima de Oliveira", "Neonatologia", "458755"),
+  ("11468", "Bruna Paes Chavez", "Obstretíca", "246585");
+ 
+--apagando o registro da especialidade
+DELETE FROM medico WHERE especialidade = "Neonatologia"
+ 
+--apagando todos os dados
+DELETE FROM crianca;
+DELETE FROM mae;
+DELETE FROM medico;
+DELETE FROM nascimento;
+ 
+--apagando uma tabela
+DROP TABLE mae;    
+ 
+--apagando o banco de dados
+DROP DATABASE hospitalinfantil;
