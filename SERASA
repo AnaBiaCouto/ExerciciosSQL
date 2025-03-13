@@ -1,0 +1,95 @@
+-- Criando o banco de dados
+ 
+CREATE DATABASE serasa;
+ 
+-- Criando a tabela
+CREATE TABLE  empregados(
+    codigo INT(5) PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    depto INT(4) NOT NULL,
+    salario DECIMAL(4,3) NOT NULL
+);
+ 
+--inserindo os valores da tabela
+INSERT INTO empregados( codigo, nome, depto, salario)
+VALUES
+(43500, "Ana da Silva", 9411, 5.200),
+(43501, "Vitoria Beatriz", 9411, 3.400),
+(43502, "Pedro José", 9412, 2.600),
+(43503, "Amary Manoel", 9412, 8.400),
+(43504, "Carlos Silva", 9412, 5.600),
+(43505, "Vitorio Cardoso", 9413, 2.300),
+(43506, "Carlos Ives Souza", 9413, 3.380),
+(43507, "Victor Silva", 9413, 4.500),
+(43508, "Saulo Monteiro", 9413, 6.8000);
+ 
+--Alterando todos os depto para 9414
+UPDATE empregados
+SET depto = "9414"
+WHERE depto IN ("9411", "9412", "9413");
+ 
+--Alterando os três primeiros registros para 9415
+UPDATE empregados
+SET depto = "9415"
+WHERE codigo = "43500" AND  nome = "Ana da Silva";
+ 
+UPDATE empregados
+SET depto = "9415"
+WHERE codigo = "43501" AND  nome = "Vitoria Beatriz";
+ 
+UPDATE empregados
+SET depto = "9415"
+WHERE codigo = "43502" AND  nome = "Pedro José";
+ 
+--Alterando o valor dos 3 para o valor original novamente
+UPDATE empregados
+SET depto = "9411"
+WHERE codigo = "43500" AND  nome = "Ana da Silva";
+ 
+UPDATE empregados
+SET depto = "9411"
+WHERE codigo = "43501" AND  nome = "Vitoria Beatriz";
+ 
+UPDATE empregados
+SET depto = "9412"
+WHERE codigo = "43502" AND  nome = "Pedro José";
+ 
+--Realizando um SELECT para todo o banco de dados
+SELECT * FROM empregados;
+ 
+--Realizando um SELECT apenas da coluna onde o salario for igual R$6800
+SELECT * FROM empregados
+WHERE salario = 6.800
+   
+--Realizando um SELECT da  codido coluna e o nome onde o salario for igual a R$5.200
+SELECT codigo, nome FROM empregados
+WHERE salario = 5.200;
+ 
+--Realizando um SELECT da coluna DEPTO onde o salário for maior que R$3.000 e menor que R$5.500
+SELECT depto FROM empregados
+WHERE salario > 3.000
+ 
+SELECT depto FROM empregados
+WHERE salario < 5.500
+ 
+--Realizando um SELECT da coluna codigo e depto onde o salario estiver entre 2.600 e 3.380
+SELECT codigo, depto FROM empregados
+WHERE salario BETWEEN 2.600 AND 3.380;
+ 
+--Realizando um SELECT da coluna nome onde o depto for 9411 E 9412
+SELECT nome FROM empregados
+WHERE depto = "9411"
+ 
+SELECT nome FROM empregados
+WHERE  depto = "9412"
+ 
+ 
+---Realizando um SELECT de depto, salario e nome, onde o codigo for 43500 oR 43502
+SELECT depto, salario, nome FROM empregados
+WHERE codigo = 43500
+ 
+SELECT depto, salario, nome FROM empregados
+WHERE codigo = 43502
+ 
+--Realizando um SUM de todos os salarios da tabela  
+SELECT SUM(salario) AS soma_salarii FROM empregados;
